@@ -46,7 +46,11 @@ const Main = ({ history }) => {
                         dispatch({type: "CHANGE_MONTH", currentMonth: currentMonth - 1})                    
                     break;
             }
-        }
+        }        
+    }
+
+    const DaysWrapper = () => {
+        return (_displayDays())
     }
 
     const _displayDays = () => {
@@ -132,7 +136,7 @@ const Main = ({ history }) => {
                     <p className="day main-right__day">THU</p>
                     <p className="day main-right__day">FRI</p>
                     <p className="day main-right__day">SAT</p>                    
-                    {daysInMonth > 0 && _displayDays()}
+                    {daysInMonth > 0 && <DaysWrapper />}
                 </div>
 
             </div>

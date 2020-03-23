@@ -85,7 +85,7 @@ export const GlobalStyles = createGlobalStyle`
         height: 35px;
         padding: 10px;
         background: ${({ theme }) => theme.background};
-    } 
+    }     
 
     .main-right__day:hover, .neomorphism-logo:hover {        
         animation: shadowOnHoverAnimation 100ms ease-out forwards;

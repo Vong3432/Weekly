@@ -7,7 +7,7 @@ const Day = ({ _onDayClicked, day, month, year }) => {
 
     const [ hasActivity, setHasActivity ] = useState(false)
 
-    useEffect(() => {             
+    useEffect(() => {          
 
         // Compare dateString with every data in localStorage
         if (localStorage.getItem('user') !== null) {
@@ -36,7 +36,7 @@ const Day = ({ _onDayClicked, day, month, year }) => {
             }
 
         }
-    }, [])    
+    }, [month, year])    
 
     return (
         <div onClick={(e) => day && _onDayClicked(e, day)} className={`soft-shadow main-right__day ${hasActivity && 'hasActivity'}`}>
