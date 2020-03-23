@@ -1,0 +1,223 @@
+.detail-section {
+    padding: 5em 0;
+}
+
+.detail-container {
+    max-width: 1200px;
+}
+
+.detail-header,
+.detail-header-date {
+    -webkit-user-select: none;
+    /* Chrome/Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+ */
+
+    /* Rules below not implemented in browsers yet */
+    -o-user-select: none;
+    user-select: none;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.detail-header .neomorphism-logo {
+    margin-left: 2em;
+    width: 60px;
+    height: 60px;
+    padding: 20px;
+}
+
+.detail-header .logo { 
+    max-width: 35px;
+    max-height: 35px;    
+}
+
+.detail-header-date {
+    min-height: 48px;
+    padding: 1em;
+    border-radius: 10px;
+    font-size: 2.5rem;
+}
+
+.detail-header-date>h1 {
+    margin-left: auto;
+}
+
+.detail-header__arrow-container {
+    display: flex;
+    flex-flow: column;
+    margin-left: auto;
+    margin-right: 5px;
+    justify-content: space-around;
+}
+
+.detail-header__arrow-container .neomorphism-logo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;    
+    padding:10px;
+}
+
+.detail-header__arrow-container .logo {
+    width: 20px;
+    height: 20px;        
+}
+
+.detail-activities {
+    margin-top: 3em;
+    margin-bottom: 2em;
+}
+
+.detail-activities > p {
+    margin-bottom: 1em;
+}
+
+.activity-card {    
+    padding: 1.5em;  
+    margin: 2em 0;  
+    border-radius: 5px;    
+}
+
+.activity-card__header {
+    display: flex;
+    flex-flow: row;    
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 1.5em;
+}
+
+.activity-card__header div {
+    margin-right: 1em;
+}
+
+
+.activity-card__title {
+    font-family: Rubik--md !important;
+    font-weight: 500;       
+}
+
+.activity-card__time {    
+    line-height: 3.5;
+}
+
+.activity-card__desc {
+    opacity: .5;    
+    margin-top: 1em;
+}
+
+.activity-card__desc_wrapper {
+    opacity: 0;   
+    z-index: -1;
+    display: none;
+    /* visibility: hidden; */
+    /* height: 0;    */
+}
+
+.showDescClass {
+    display: block !important;
+    animation: showDesc 500ms ease-out forwards;
+}
+
+.hideDescClass {        
+    animation: hideDesc 500ms ease-in forwards;
+}
+
+@keyframes showDesc {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    40% {
+        height: fit-content;   
+        transform: translateY(0px);
+    }
+    100% {        
+        opacity: 1;
+        visibility: visible;        
+    }
+}
+
+@keyframes hideDesc {
+    0% {
+        opacity: 1;        
+    }
+    60% {
+        transform: translateY(0px);
+    }
+    100% {         
+        transform: translateY(-100px);
+        opacity: 0;   
+        z-index: -1;
+        visibility: hidden;
+        height: 0;              
+    }
+}
+
+.react-confirm-alert-overlay {     
+    background-color: var(--overlay) !important;    
+}
+
+.custom-ui {
+    background-color: var(--primary-color);
+    padding: 2em;    
+    z-index: 98;
+    max-width: 350px;     
+    margin: 0 auto;   
+    width:  100%;
+    height: fit-content;
+}
+
+.custom-ui button {
+    background-color: var(--primary-color);
+    padding: 1em;
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+.custom-ui__desc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    opacity: .75;
+    margin: 1.75em 0;
+}
+
+@media screen and (max-width: 760px) {
+    .detail-header {
+        flex-flow: column;        
+    }
+
+    .detail-header > .neomorphism-logo {
+        position: fixed;
+        bottom: 0;        
+        right: 0; 
+        margin: 0 2em 2em 0;               
+        background-color: var(--primary-color);        
+    }
+
+    .detail-header-date {
+        min-height: 48px;
+        padding: .75em 1em;        
+        font-size: 2rem;
+        margin-bottom: 1em;
+    }
+
+    .detail-header__arrow-container .neomorphism-logo {
+        width: 40px;
+        height: 40px;
+        padding: 15px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .custom-ui {
+        max-width: 300px;        
+    }
+}

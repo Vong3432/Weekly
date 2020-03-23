@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+    flex-flow: row;        
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.navbar .container {
+    position: relative !important;
+}
+
+.navbar .big-font {
+    margin: 0 auto;
+}
+
+.navbar .logo {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 2em;    
+    cursor: pointer;
+}

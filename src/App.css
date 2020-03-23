@@ -1,38 +1,71 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: Rubik--rg;
+  src: url(fonts/Rubik-Regular.ttf);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: Rubik--md;
+  src: url(fonts/Rubik-Medium.ttf);
+  font-weight: 500 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: Rubik--bold;
+  src: url(fonts/Rubik-Bold.ttf);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+:root {
+  font-size: 18px;
 }
 
-.App-link {
-  color: #61dafb;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+  font-family: Rubik--rg;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bold-font {
+  font-family: Rubik--bold;
+}
+
+button {
+  border: none;  
+  color: inherit;  
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: Rubik--md;
+}
+
+.font--big {
+  font-size: 3rem;
+  color: inherit;
+}
+
+.container {
+  max-width: 1500px;
+  width: 100%;
+  padding: 1em;
+  display: inherit;
+  align-items: inherit;
+  align-content: inherit;
+  justify-content: inherit;
+  justify-items: inherit;
+  margin: 0 auto;  
+}
+
+.small-container {
+  max-width: 900px;
+}
+
+.logo {
+  max-width: 35px;
+  max-height: 35px;
+  width: 100%;  
+  height: fit-content;  
+}
+
+.big-font {
+  font-size: 2.5rem;
 }
