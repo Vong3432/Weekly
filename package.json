@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/Vong3432/Weekly/issues"
   },
-  "homepage": "https://secure-anchorage-95351.herokuapp.com/",
+  "homepage": "https://weeklyappcalendar.herokuapp.com/",
   "dependencies": {
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
