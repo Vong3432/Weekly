@@ -16,12 +16,10 @@ if(process.env.NODE_ENV !== 'production') {
 
 if(process.env.NODE_ENV === 'production') {
 
-    // Test
-
-    const root = require('path').join(__dirname, 'client', 'build')
-    app.use(express.static(root));    
+    // Test    
+    app.use('/', express.static(path.join(__dirname), '/client/build'));    
     app.get('*', (req, res) => {
-        res.sendFile('index.html', {root});
+        res.send(path.join(__dirname), '/client/build')
     })
 }
 
