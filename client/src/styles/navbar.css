@@ -1,0 +1,178 @@
+.navbar {
+    display: flex;
+    flex-flow: column;
+    position: relative;    
+}
+
+.unauthorized-navbar {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 1em;  
+}
+
+.unauthorized-navbar .google-button {
+    margin-left: 1em;
+}
+
+.navbar .logo {
+    width: 25px;
+    height: 25px;
+    /* position: absolute; */
+    /* right: 2em;     */
+    cursor: pointer;
+}
+
+.navbar .big-font {
+    line-height: 1.6;
+    margin-right: auto;
+}
+
+.navbar .container {
+    position: relative !important;
+}
+
+.profile-container {  
+    position: absolute;
+    top: 1.25em;
+    right: 1em;      
+    display: flex;
+    flex-flow: column;       
+    padding: 1em;
+    z-index: 99;
+    font-size: .9rem;
+}
+
+.profile-header {
+    align-items: center;
+    display: flex;
+    flex-flow: row;    
+}
+
+.profile-avatar {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 30px; 
+    margin-right: 7px;   
+}
+
+.profile-name {
+    display: none;
+}
+
+.navbar .neomorphism-logo {
+    padding: 5px;
+    margin-left: auto;    
+}
+
+.collapse {           
+    animation: onCollapse 200ms 0ms ease-in forwards;
+    /* display: none;   */
+    
+}
+
+.show-collapse {
+    position: relative;
+    display: flex !important;
+    animation: onOpenCollapse 200ms ease-in forwards;
+}
+
+@keyframes onCollapse {
+    0% {
+        top: 0;        
+        visibility: visible !important;
+    }
+    20% {
+        top: -20px;  
+        opacity: 0;      
+    } 
+    100% {
+        opacity: 0;
+        top: -50px;                  
+        height: 0;
+        margin-top: 0;
+        visibility: hidden !important;
+    }
+}
+
+@keyframes onOpenCollapse {
+    0% {
+        opacity: 0;
+        top: -50px;
+        visibility: hidden !important;
+    }
+    80% {
+        top: -20px;  
+        opacity: 0;      
+    } 
+    100% {
+        top: 0;
+        opacity: 1;        
+        visibility: visible !important;
+    }
+}
+
+
+.profile-collapse-content {    
+    margin-top: 1em;   
+    flex-flow: column;    
+    display: none;         
+}
+
+.profile-collapse-item {        
+    display: inherit;
+    flex-flow: row;
+    align-items: center;
+    cursor: pointer;
+    margin: .5em 0;
+    padding: .75em 1em;
+    font-size: .7rem !important;
+}
+
+.profile-collapse-content > .profile-name {
+    box-shadow: none !important;
+    margin-top: 0;
+    padding: 0;
+    margin-bottom: 1.5em;
+    font-size: 1rem !important;
+}
+
+.profile-collapse-item-text {
+    margin-left: 1em;
+}
+
+.google-logout-button > div {
+    background: transparent !important;
+}
+
+@media screen and (min-width: 700px) {   
+    
+    .navbar {
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar .big-font {
+        margin-left: auto;        
+    }
+
+    .profile-avatar {
+        margin-right: 0px;   
+    }
+/* 
+    .show-collapse .profile-collapse-item:first-child {
+        display: none !important;
+    } */
+
+    .profile-header .profile-name {
+        display: block;
+        margin-left: .5em;
+        margin-right: 2em;
+    }
+
+    .profile-collapse-content > .profile-name {
+        display: none;        
+    }
+
+}
