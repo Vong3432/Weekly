@@ -17,7 +17,7 @@ if(process.env.NODE_ENV !== 'production') {
 if(process.env.NODE_ENV === 'production') {
 
     // Test    
-    app.use('/', express.static(path.join(__dirname), '/client/build'));    
+    app.use('/', express.static(path.join(__dirname,  '/client/build')));    
     app.get('*', (req, res) => {
         res.send(path.join(__dirname), '/client/build')
     })
