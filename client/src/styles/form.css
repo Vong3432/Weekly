@@ -1,0 +1,112 @@
+form {
+    display: flex;
+    flex-flow: column;
+}
+
+label {    
+    font-size: 1.2rem;
+    font-family: Rubik--bold;    
+    padding-bottom: .75em;
+}
+
+form input, 
+form textarea,
+form .custom-dt,
+form button {                    
+    -webkit-appearance: none;    
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    color: inherit;
+    min-height: 48px;
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 4em;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.custom-dt {    
+    padding: 5em 1em !important;
+    display: flex;
+    flex-flow: column;    
+    align-items: center;
+    text-align: center;    
+}
+
+.custom-dt input {
+    -webkit-appearance: menulist;    
+    box-shadow: none;       
+    width: fit-content;    
+    margin-bottom: 0;    
+}
+
+.custom-dt strong {
+    cursor: context-menu;
+}
+
+.custom-dt input[type=time] {
+    cursor: text;       
+}
+
+input[type=time]::-webkit-clear-button,
+input[type=time]::-webkit-inner-spin-button {
+    display: none;
+}
+
+form button {
+    padding: 1.25em !important;
+    width: 100% !important;
+}
+
+.ReactModal__Overlay {
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.75) !important;
+}
+
+.modal--success {    
+    max-width: 300px;
+    max-height: 300px;
+    margin: 0 auto;
+    outline: none;
+    display: inherit;    
+    flex-flow: inherit;
+    align-items: center;
+
+    color: #fff;
+}
+
+.note, .qna-container {
+    margin-bottom: 2em;    
+}
+
+.qna-container {
+    position: relative;
+    padding-left: 15px;
+}
+
+.question {
+    font-family: Rubik--rg !important;
+    font-size: 1.25rem;
+}
+
+.question::before {
+    content: '';
+    width: 5px;
+    height: 100%;
+    background-color: #a50d5d;
+    position: absolute;
+    left: 0;
+}
+
+.answer {
+    margin: .5em 0;
+    line-height: 1.5;
+    opacity: .75;
+    font-size: .9rem;
+}
