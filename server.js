@@ -1,6 +1,7 @@
 const express = require('express');
 // const cron = require('node-cron')
 const schedule = require('node-schedule')
+const path = require('path')
 const dotenv = require('dotenv');
 const mongoose = require('mongoose')
 const app = express();
@@ -10,6 +11,11 @@ if(process.env.NODE_ENV !== 'production') {
 }
 
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, './client/build')))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './client/build'))
+})
 
 // Configuring Port
 const port = process.env.PORT || 5000;
