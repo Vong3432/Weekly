@@ -3,8 +3,12 @@ const express = require('express');
 const schedule = require('node-schedule')
 const path = require('path')
 const dotenv = require('dotenv');
+const cors = require('cors');
 const mongoose = require('mongoose')
 const app = express();
+
+app.use(cors())
+app.use(express.json());
 
 if(process.env.NODE_ENV !== 'production') {
     dotenv.config();
@@ -20,8 +24,6 @@ if(process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     })
 }
-
-app.use(express.json());
 
 
 // Configuring Port
