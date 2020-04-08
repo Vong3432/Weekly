@@ -46,6 +46,8 @@ const Day = ({ _onDayClicked, day, month, year }) => {
             // then check if current day has any activity.
             if (activities && activities.length > 0) {
 
+                console.log(activities)
+
                 // Current dateString        
                 const dateString = moment(`${year}/${month}/${day}`).format('YYYY MM DD').split(" ").join("-")                
 

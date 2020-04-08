@@ -118,6 +118,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             const loadCloudData = async() => {                                
                 const response = await axios.get(`/activity/displayAll/${email}`, {headers: {"authorization": token}})
                 const data = response.data
+                console.log(data)
                 
                 dispatch({type: "FETCH_FROM_CLOUD", data})
             }          
