@@ -14,16 +14,6 @@ app.use(express.json());
 //     dotenv.config();
 // }
 
-if(process.env.NODE_ENV === 'production') {
-
-    // Test    
-    app.use(express.static('client/build'));    
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-    })
-}
-
-
 // Configuring Port
 const port = process.env.PORT || 5000;
 
@@ -66,9 +56,19 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
     console.log('MongoDB is connected.')
 })
 
-// middlewares
+// routes
 app.use('/user', require('./routes/user/user'));
 app.use('/activity', require('./routes/user/activity'))
+
+
+if(process.env.NODE_ENV === 'production') {
+
+    // Test    
+    app.use(express.static('client/build'));    
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    })
+}
 
 // Listen to port
 app.listen(port, () => console.log(`Server is running on ${port}`))
