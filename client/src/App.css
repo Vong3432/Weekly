@@ -1,17 +1,20 @@
 @font-face {
   font-family: Rubik--rg;
-  src: url(fonts/Rubik-Regular.ttf);
+  src: url(fonts/Rubik-Regular.ttf), url('https://fonts.googleapis.com/css?family=Rubik:400&display=swap');
+  font-display: swap;
 }
 
 @font-face {
   font-family: Rubik--md;
-  src: url(fonts/Rubik-Medium.ttf);
+  src: url(fonts/Rubik-Medium.ttf), url('https://fonts.googleapis.com/css?family=Rubik:500&display=swap');
   font-weight: 500 !important;
+  font-display: swap;
 }
 
 @font-face {
   font-family: Rubik--bold;
-  src: url(fonts/Rubik-Bold.ttf);
+  src: url(fonts/Rubik-Bold.ttf), url('https://fonts.googleapis.com/css?family=Rubik:700&display=swap');
+  font-display: swap;
 }
 
 :root {
