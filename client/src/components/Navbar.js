@@ -62,9 +62,9 @@ const Navbar = ({ theme, toggleTheme }) => {
 
                         axios.post('/activity/local_to_cloud', current_activity)
                             .then(res => {
-                                const data = res.data  
-                                console.log(data);
-                                dispatch({type: "ADD_ACTIVITY", data})                
+                                const cloud_data = res.data  
+                                console.log(cloud_data);
+                                dispatch({type: "ADD_ACTIVITY", cloud_data})                
                             })
                             .then(() => {
                                 // Clear localData so Google user can save on mongo directly

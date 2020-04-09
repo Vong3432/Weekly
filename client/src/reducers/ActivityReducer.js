@@ -3,17 +3,12 @@ import { useContext } from "react";
 import {UserContext} from '../contexts/UserContext'
 import axios from "axios";
 
-const initialState = {
-    activities: []
-}
-
-export const ActivityReducer = (state: initialState.activities, action) => {   
+export const ActivityReducer = (state, action) => {   
         
     const authorized_user = JSON.parse(localStorage.getItem('authorized_user'))    
 
     switch (action.type) {
-        case "ADD_ACTIVITY": {   
-            console.log(state)                            
+        case "ADD_ACTIVITY": {       
             return [...state, action.data]
         }        
         break;    
