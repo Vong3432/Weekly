@@ -28,14 +28,12 @@ const Detail = ({ history }) => {
         //     dispatch({type: "FETCH_FROM_CLOUD", data})
         // }          
         
-        // loadCloudData()
+        // loadCloudData()          
 
-        if(activities) {
+        if(JSON.parse(localStorage.getItem('authorized_user'))) {
 
-            console.log(activities)
-            
-            // if(activities.length === 0)
-            setLoadedActivities([])            
+            setLoadedActivities([])  
+            console.log(activities)                                      
             
             localStorage.setItem('cloud_data', JSON.stringify(activities))                                                                       
             _loadActivities();
@@ -52,21 +50,21 @@ const Detail = ({ history }) => {
         const user = JSON.parse(localStorage.getItem('user'));        
         const authorized_user = JSON.parse(localStorage.getItem('authorized_user'))
         
-        setLoadedActivities([])        
+        setLoadedActivities([])                  
 
         if(user === null && authorized_user === null)
             return;                
 
         if(user) {            
             user.activities.map((activity, index) => {                    
-                if(activity.date_string === dateString) {                  
+                if(activity.date_string === dateString) {   
+                    console.log(activity)               
                     setLoadedActivities(activity.data);
                 }                                                            
             })
         }        
 
-        else if(authorized_user) {
-
+        else if(authorized_user) {            
             if(JSON.parse(localStorage.getItem('cloud_data'))) {
                 
                 let arr = [];

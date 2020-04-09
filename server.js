@@ -10,9 +10,9 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
-// if(process.env.NODE_ENV !== 'production') {
-//     dotenv.config();
-// }
+if(process.env.NODE_ENV !== 'production') {
+    dotenv.config();
+}
 
 // Configuring Port
 const port = process.env.PORT || 5000;

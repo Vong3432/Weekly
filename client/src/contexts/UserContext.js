@@ -12,9 +12,9 @@ export const UserContextProvider = props => {
     const [ authorized_user, dispatchUser ] = useReducer(UserReducer, null, () => {
         
         const localAuthorizedUser = localStorage.getItem('authorized_user');        
-        if(localAuthorizedUser) {
-            dispatch({type: "FETCH_FROM_CLOUD"})
-        }
+        // if(localAuthorizedUser) {
+        //     dispatch({type: "FETCH_FROM_CLOUD"})
+        // }
 
         return localAuthorizedUser ? JSON.parse(localAuthorizedUser) : null;
     })

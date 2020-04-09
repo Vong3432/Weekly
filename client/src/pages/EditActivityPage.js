@@ -27,8 +27,9 @@ const EditActivityPage = (props) => {
     const cloudData = JSON.parse(localStorage.getItem('cloud_data'));
 
     useEffect(() => {            
+        
 
-        if(cloudData) {
+        if(cloudData && cloudData.length > 0) {            
             cloudData.map((activity, index) => {
                 if(activity.activity_id === id) {
                     setNewActivity(activity)
@@ -36,7 +37,7 @@ const EditActivityPage = (props) => {
             })
         }
         
-        else if(localData) {
+        else if(localData) {            
             localData.activities.map((activity, index) => {
                 if(activity.date_string === prevVisitDate.dateString) {                
                     activity.data.map(item => item.activity_id === id && setNewActivity(item))

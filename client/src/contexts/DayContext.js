@@ -20,6 +20,8 @@ export const DayContextProvider = props => {
 
     useEffect(() => {                        
         localStorage.setItem('current_dateInformation', JSON.stringify(date))
+
+        return () => console.log('unmount day context.')
     }, [date])
 
     return (
