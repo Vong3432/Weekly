@@ -62,17 +62,18 @@ const Navbar = ({ theme, toggleTheme }) => {
 
                         axios.post('/activity/local_to_cloud', current_activity)
                             .then(res => {
-                                const cloud_data = res.data  
-                                console.log(cloud_data);
+                                const cloud_data = res.data                                  
                                 dispatch({type: "ADD_ACTIVITY", cloud_data})                
                             })
                             .then(() => {
                                 // Clear localData so Google user can save on mongo directly
                                 localStorage.setItem('user', null)
                             })
-                            .catch(err => console.log(err));                                                                                                      
+                            .catch(err => console.log(err));
+                            
+                        return data;
                     })
-                    
+                    return activity
                 })                
                 
             }
@@ -108,17 +109,14 @@ const Navbar = ({ theme, toggleTheme }) => {
 
     useEffect(() => {
         
-        if(authorized_user) {
-
-            console.log(authorized_user)
+        if(authorized_user) {            
             
             const email = authorized_user.email; 
             const token = authorized_user.token;             
 
             const loadCloudData = async() => {                                
                 const response = await axios.get(`/activity/displayAll/${email}`, {headers: {"authorization": token}})
-                const data = response.data
-                console.log(data)
+                const data = response.data                
                 
                 dispatch({type: "FETCH_FROM_CLOUD", data})
             }          

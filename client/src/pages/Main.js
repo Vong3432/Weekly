@@ -1,25 +1,35 @@
 import React, { useState, useEffect, useContext } from 'react'
 import '../styles/main.css'
-import downarrow from '../assets/images/downarrow.svg'
 import moment from 'moment'
 import { DayContext } from '../contexts/DayContext'
 import Day from '../components/Day'
 import { ActivityContext } from '../contexts/ActivityContext'
+import {} from 'gsap'
+import { TweenLite } from 'gsap/gsap-core'
+import { TimelineLite } from 'gsap/gsap-core'
 
-const Main = ({ history }) => {
+const Main = ({ history }, props) => {    
 
     const { date: {currentMonth, currentYear}, dispatch } = useContext(DayContext);    
-    const { activities } = useContext(ActivityContext);
     const [daysInMonth, setDaysInMonth] = useState(0)
+    const { activities } = useContext(ActivityContext)
+    
+    let mainCoverElement = null,
+        mainCoverTween = null;    
 
     useEffect(() => {        
-        setDaysInMonth(moment(`${currentYear}-${currentMonth}`, "YYYY-MM").daysInMonth());        
-    }, [currentMonth, currentYear])
+        
+        setDaysInMonth(moment(`${currentYear}-${currentMonth}`, "YYYY-MM").daysInMonth());                
 
-    useEffect(() => {
-        if(activities)
-            console.log(activities)
-    }, [activities])
+    }, [currentMonth, currentYear, activities])        
+    
+    useEffect(() => {        
+
+        mainCoverTween = new TimelineLite()
+                            .to(mainCoverElement, .75, {opacity: 1})
+                            .to(mainCoverElement, .25, {opacity: 0, display: "none"})  
+                            // .to(mainCoverElement, 5, { backgroundColor: "none", translateX: -5000})
+    }, [])
 
     const _update = (type, action) => {
         if (type === 'year') {
@@ -52,6 +62,8 @@ const Main = ({ history }) => {
                     else
                         dispatch({type: "CHANGE_MONTH", currentMonth: currentMonth - 1})                    
                     break;
+                default:
+                    break;
             }
         }        
     }
@@ -83,8 +95,7 @@ const Main = ({ history }) => {
     const _onDayClicked = (e, currentDay) => {                        
         
         dispatch({type: "CHANGE_DAY", currentDay})
-            
-        console.log(currentDay)
+                    
         localStorage.setItem('current_dateInformation', JSON.stringify({            
             currentDay,
             currentMonth,
@@ -96,6 +107,9 @@ const Main = ({ history }) => {
 
     return (
         <section className="main-section">
+            <div ref={div => mainCoverElement = div} id="main-cover">
+                <h1 className="main-cover-title">Weekly.</h1>
+            </div>
             <div className="container main-container">
 
                 <div className="main-left" unselectable="on">

@@ -31,9 +31,10 @@ const Day = ({ _onDayClicked, day, month, year }) => {
                 localData.activities.map((activity) => {                    
                     
                     if(activity.date_string === dateString) {
-                        setHasActivity(true)
-                        return 
-                    }                                                                
+                        setHasActivity(true)                        
+                    }                       
+                    
+                    return activity
                         
                 })
 
@@ -44,9 +45,7 @@ const Day = ({ _onDayClicked, day, month, year }) => {
         else if(authorized_user) {
             // If has at least 1 activity is stored,
             // then check if current day has any activity.
-            if (activities && activities.length > 0) {
-
-                console.log(activities)
+            if (activities && activities.length > 0) {                
 
                 // Current dateString        
                 const dateString = moment(`${year}/${month}/${day}`).format('YYYY MM DD').split(" ").join("-")                

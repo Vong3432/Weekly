@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react'
 import '../styles/form.css'
-import moment from 'moment'
-import { _scrollToTop } from '../functions/ScrollToTop'
 import { ActivityContext } from '../contexts/ActivityContext'
 import { useEffect } from 'react'
 import axios from 'axios'
 
 const EditActivityPage = (props) => {
+
+    console.log(props)
        
     const { id } = props.match.params
     const { history } = props    
@@ -34,6 +34,8 @@ const EditActivityPage = (props) => {
                 if(activity.activity_id === id) {
                     setNewActivity(activity)
                 }
+
+                return activity
             })
         }
         
@@ -42,8 +44,11 @@ const EditActivityPage = (props) => {
                 if(activity.date_string === prevVisitDate.dateString) {                
                     activity.data.map(item => item.activity_id === id && setNewActivity(item))
                 }
+                return activity
             })
-        }        
+        }       
+        
+        return () => console.log('Edit activity page unmounted')
 
     }, [])    
 
@@ -109,6 +114,8 @@ const EditActivityPage = (props) => {
 
                         localStorage.setItem('user', JSON.stringify(newState));
                     }
+
+                    return activity
                 })
             }                        
 
@@ -124,7 +131,7 @@ const EditActivityPage = (props) => {
 
     return (
         <div className="container small-container">        
-
+            <svg onClick={() => history.goBack()} className="return-logo neomorphism-logo round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path className="add-svg" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
             <form onSubmit={e => _onSubmit(e)} method="POST" autoComplete="off">
                 {errMsg && <h2 style={{ margin: "1em 0" }}>{errMsg}</h2>}
                 <label htmlFor="title">Title</label>

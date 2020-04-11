@@ -38,8 +38,7 @@
     right: 1em;      
     display: flex;
     flex-flow: column;       
-    padding: 1em;
-    z-index: 99;
+    padding: 1em;    
     font-size: .9rem;
 }
 

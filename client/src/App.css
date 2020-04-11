@@ -17,7 +17,7 @@
   font-display: swap;
 }
 
-:root {
+:root {  
   font-size: 18px;
 }
 
@@ -35,6 +35,40 @@
 button {
   border: none;  
   color: inherit;  
+}
+
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;  
+}
+
+#root, .App, .App > div {
+  /* min-height: inherit; */
+}
+
+#root {
+  overflow-y: hidden;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -72,4 +106,33 @@ h1,h2,h3,h4,h5,h6 {
 
 .big-font {
   font-size: 2.5rem;
+}
+
+/* Page Transitions */
+.page-transition-enter,
+.page-transition-appear {
+  opacity: 0.01;
+  /* transform: scale(1.1); */
+  /* transform: translateY(50px); */
+}
+
+.page-transition-enter-active,
+.page-transition-appear.page-transition-appear-active{
+  opacity: 1;
+  /* transform: scale(1); */
+  /* transform: translateY(0px); */
+  transition: all 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  /* transform: translateY(0px); */
+  /* transform: scale(1); */
+}
+
+.page-transition-exit-active {
+  opacity: 0.01;
+  /* transform: scale(1.1); */
+  /* transform: translateY(500px); */
+  transition: all 300ms;
 }

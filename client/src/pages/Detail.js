@@ -13,8 +13,8 @@ const Detail = ({ history }) => {
     const { activities } = useContext(ActivityContext)
     const [loadedActivities, setLoadedActivities] = useState([])    
 
-    useEffect(() => {        
-                
+    useEffect(() => {                            
+
         setDaysInMonth(moment(`${currentYear}-${currentMonth}`, "YYYY-MM").daysInMonth());        
 
     }, [currentMonth, currentYear]) 
@@ -32,8 +32,7 @@ const Detail = ({ history }) => {
 
         if(JSON.parse(localStorage.getItem('authorized_user'))) {
 
-            setLoadedActivities([])  
-            console.log(activities)                                      
+            setLoadedActivities([])                                                   
             
             localStorage.setItem('cloud_data', JSON.stringify(activities))                                                                       
             _loadActivities();

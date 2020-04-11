@@ -6,13 +6,9 @@ import HashLoader from 'react-spinners/HashLoader'
 import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
 
-// Import custom functions
-import { _scrollToTop } from '../functions/ScrollToTop'
-
 // Import Context
 import { DayContext } from '../contexts/DayContext'
 import { ActivityContext } from '../contexts/ActivityContext'
-import { UserContext } from '../contexts/UserContext'
 
 Modal.setAppElement('#root');
 
@@ -126,8 +122,9 @@ const CreateActivityPage = ({ history }) => {
                     user.activities.map((activity, index) => {
                         if (activity.date_string === dateString) {
                             activity.data.push(newActivity);
-                            hasFoundSameDate = true
+                            hasFoundSameDate = true                            
                         }
+                        return activity;
                     })
             
                     if (!hasFoundSameDate) {
@@ -153,6 +150,7 @@ const CreateActivityPage = ({ history }) => {
 
     return (
         <div className="container small-container">
+            <svg onClick={() => history.goBack()} className="return-logo neomorphism-logo round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path className="add-svg" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
             <Modal
                 isOpen={modalIsOpen}
                 className="modal--success"

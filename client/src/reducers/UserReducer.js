@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const UserReducer = (state, action) => {    
 
     switch (action.type) {
