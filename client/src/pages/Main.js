@@ -24,10 +24,17 @@ const Main = ({ history }, props) => {
     }, [currentMonth, currentYear, activities])        
     
     useEffect(() => {        
+        
+        console.log()
+        const el = document.querySelector('.profile-container')
+
+        if(el)
+            el.style.display = 'none'
 
         mainCoverTween = new TimelineLite()
                             .to(mainCoverElement, .75, {opacity: 1})
                             .to(mainCoverElement, .25, {opacity: 0, display: "none"})  
+                            .then(() => el ? el.style.display = "flex" : null)
                             // .to(mainCoverElement, 5, { backgroundColor: "none", translateX: -5000})
     }, [])
 
