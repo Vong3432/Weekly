@@ -1,5 +1,4 @@
-import React, { createContext, useReducer, useEffect } from "react";
-import moment from 'moment'
+import React, { createContext, useReducer } from "react";
 import { ActivityReducer } from "../reducers/ActivityReducer";
 
 export const ActivityContext = createContext();

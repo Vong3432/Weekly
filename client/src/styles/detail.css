@@ -1,5 +1,7 @@
 .detail-section {
     padding: 5em 0;
+    overflow-y: auto;
+    min-height: inherit;
 }
 
 .detail-container {

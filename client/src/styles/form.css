@@ -1,3 +1,10 @@
+.return-logo {
+    width: 50px !important;
+    height: 50px !important;
+    margin-top:1em;
+    margin-bottom: 3em;
+}
+
 form {
     display: flex;
     flex-flow: column;

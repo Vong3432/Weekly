@@ -1,11 +1,4 @@
-import moment from "moment";
-import { useContext } from "react";
-import {UserContext} from '../contexts/UserContext'
-import axios from "axios";
-
-export const ActivityReducer = (state, action) => {   
-        
-    const authorized_user = JSON.parse(localStorage.getItem('authorized_user'))    
+export const ActivityReducer = (state, action) => {       
 
     switch (action.type) {
         case "ADD_ACTIVITY": {       

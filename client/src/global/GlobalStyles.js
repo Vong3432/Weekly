@@ -10,6 +10,8 @@ export const GlobalStyles = createGlobalStyle`
     :root {
         --overlay: ${({theme}) => theme.overlay};
         --primary-color : ${({ theme }) => theme.background};
+        --inner-shadow: ${({theme}) => theme.innerShadow};
+        --shadow: ${({theme}) => theme.shadow}
     }
 
     body, 

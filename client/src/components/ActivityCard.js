@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { ActivityContext } from '../contexts/ActivityContext'
-import { DayContext } from '../contexts/DayContext'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import axios from 'axios';
@@ -8,7 +7,6 @@ import axios from 'axios';
 const ActivityCard = ({ history, index, activity: { title, desc, time, activity_id }, _loadActivities }) => {
 
   const [showDesc, setShowDesc] = useState(false);
-  const { date } = useContext(DayContext);
   const { dispatch } = useContext(ActivityContext)
 
   const _onShowDesc = () => {
@@ -69,6 +67,8 @@ const ActivityCard = ({ history, index, activity: { title, desc, time, activity_
                       newState.activities = newState.activities.filter((activity) => activity.data.length > 0)
                       localStorage.setItem('user', JSON.stringify(newState));                      
                     }
+
+                    return activity;
                   })
                 }                
 
