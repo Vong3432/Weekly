@@ -38,7 +38,8 @@
     right: 1em;      
     display: flex;
     flex-flow: column;       
-    padding: 1em;    
+    padding: 1em;
+    z-index: 5;    
     font-size: .9rem;
 }
 
