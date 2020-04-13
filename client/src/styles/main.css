@@ -139,8 +139,8 @@
 
     .main-right {
         padding: 1em;
-        padding-top: 5em;
-        /* padding-bottom: 5em; */
+        padding-top: 4em;
+        padding-bottom: 10em;
     }
 
     .main-right .font--big {

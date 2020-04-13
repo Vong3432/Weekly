@@ -39,6 +39,12 @@ const ActivitySchema = new Schema({
     }, 
     time: {
         type: String
+    },
+    reminder_date: {
+        type: Date
+    },
+    reminder: {
+        type: String
     }
 })
 

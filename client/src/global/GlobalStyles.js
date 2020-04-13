@@ -77,6 +77,7 @@ export const GlobalStyles = createGlobalStyle`
     
     input,     
     .date,
+    form select,
     textarea {
         border: none;
         -moz-box-shadow: ${({ theme }) => theme.innerShadow};

@@ -17,6 +17,7 @@ label {
 }
 
 form input, 
+form select,
 form textarea,
 form .custom-dt,
 form button {                    
@@ -29,6 +30,10 @@ form button {
     width: 100%;
     padding: 1em;
     margin-bottom: 4em;
+}
+
+form select {
+    -webkit-appearance: menulist !important;
 }
 
 textarea {

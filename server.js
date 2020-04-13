@@ -1,6 +1,6 @@
 const express = require('express');
 // const cron = require('node-cron')
-const schedule = require('node-schedule')
+
 const path = require('path')
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -42,11 +42,6 @@ const port = process.env.PORT || 5000;
                and start it in server.js
 */
 
-const date = new Date(2020, 3, 7, 17, 42, 0);
-
-const j = schedule.scheduleJob(date, () => {
-    console.log('The world is going to start today');
-})
 
 // Connect to mongo
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false } ,(err) => {

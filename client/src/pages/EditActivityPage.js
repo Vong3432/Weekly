@@ -3,10 +3,9 @@ import '../styles/form.css'
 import { ActivityContext } from '../contexts/ActivityContext'
 import { useEffect } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 
-const EditActivityPage = (props) => {
-
-    console.log(props)
+const EditActivityPage = (props) => {    
        
     const { id } = props.match.params
     const { history } = props    
@@ -16,6 +15,7 @@ const EditActivityPage = (props) => {
         title: "",
         desc: "",
         time: "",
+        reminder: "none",
         activity_id: null
     })
 
@@ -25,6 +25,9 @@ const EditActivityPage = (props) => {
 
     // cloud data
     const cloudData = JSON.parse(localStorage.getItem('cloud_data'));
+
+    // authorized user
+    const authorized_user = JSON.parse(localStorage.getItem('authorized_user'));
 
     useEffect(() => {            
         
@@ -82,18 +85,36 @@ const EditActivityPage = (props) => {
             }, 16);
         }
 
-        else {
+        else {            
 
-            const authorized_user = JSON.parse(localStorage.getItem('authorized_user'));
+            if(cloudData && authorized_user) { 
+                
+                let reminder_date;
 
-            if(cloudData && authorized_user) {                
+                if(newActivity.reminder !== "none") {
+
+                    const int_reminderDay = parseInt(newActivity.reminder, 10);    
+
+                    if(int_reminderDay !== NaN) {
+        
+                        // HH:MM
+                        const hour = newActivity.time.slice(0, 2)
+                        const minute = newActivity.time.slice(3, 5)
+
+                        reminder_date = moment(`${newActivity.dateString} ${hour}:${minute}`, "YYYY-MM-DD HH:mm").subtract(newActivity.reminder, 'days').toDate();                                                                            
+                    }                    
+                }
+
+                const new_activity = {                                                            
+                    ...newActivity,                    
+                    reminder_date
+                }                
                 
                 // Edit in mongo
                 async function updateActivity() {
-                    const response = await axios.put(`/activity/editActivity/${newActivity.activity_id}`, newActivity ,{headers: {"authorization": authorized_user.token}})
-                    const data = response.data; 
                     
-                    console.log(data)
+                    const response = await axios.put(`/activity/editActivity/${new_activity.activity_id}`, new_activity ,{headers: {"authorization": authorized_user.token}})
+                    const data = response.data;                                     
                     
                     dispatch({type: "EDIT_ACTIVITY", data})
                 }
@@ -145,6 +166,22 @@ const EditActivityPage = (props) => {
                     <strong className="big-font bold-font">{prevVisitDate.currentDay}/{prevVisitDate.currentMonth}/{prevVisitDate.currentYear}</strong>
                     <input type="time" value={newActivity.time} name="time" onChange={e => _onChange(e)} />
                 </div>
+
+                {authorized_user && (
+                    <>
+                        <label htmlFor="reminder">Send me notification before</label>
+                        <select value={newActivity.reminder}  onChange={e => _onChange(e)} name="reminder" id="reminder">                            
+                            <option value="none">-</option>
+                            <option value="1">1 day</option>
+                            <option value="2">2 days</option>
+                            <option value="3">3 days</option>
+                            <option value="4">4 days</option>
+                            <option value="5">5 days</option>
+                            <option value="6">6 days</option>
+                            <option value="7">7 days</option>
+                        </select>
+                    </>
+                )}
 
                 <button type="submit" className="neomorphism-logo">
                     <svg className="logo" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg">
