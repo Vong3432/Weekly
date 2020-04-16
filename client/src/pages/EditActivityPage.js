@@ -4,6 +4,7 @@ import { ActivityContext } from '../contexts/ActivityContext'
 import { useEffect } from 'react'
 import axios from 'axios'
 import moment from 'moment'
+import { _editActivityFromLocal } from '../functions/activity/local/activityFunctions'
 
 const EditActivityPage = (props) => {    
        
@@ -123,21 +124,7 @@ const EditActivityPage = (props) => {
             }
 
             else {
-                // Edit in local
-                localData.activities.map((activity, index) => {
-                    if(activity.date_string === prevVisitDate.dateString) {                
-                        
-                        const localData = JSON.parse(localStorage.getItem('user'))
-                        const newState = localData;
-
-                        const { title, desc, time, activity_id } = newActivity
-                        newState.activities[index].data = newState.activities[index].data.map((data, data_index) => data.activity_id === activity_id ? { ...data, title, desc, time, activity_id } : data)
-
-                        localStorage.setItem('user', JSON.stringify(newState));
-                    }
-
-                    return activity
-                })
+                _editActivityFromLocal(localData, prevVisitDate, newActivity)
             }                        
 
             setTimeout(() => {

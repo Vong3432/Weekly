@@ -3,6 +3,7 @@ import { ActivityContext } from '../contexts/ActivityContext'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import axios from 'axios';
+import { _deleteActivityFromLocal } from '../functions/activity/local/activityFunctions';
 
 const ActivityCard = ({ history, index, activity: { title, desc, time, activity_id }, _loadActivities }) => {
 
@@ -56,25 +57,12 @@ const ActivityCard = ({ history, index, activity: { title, desc, time, activity_
 
                 }
 
-                else {
-                  // Delete on local data
-                  localData.activities.map((activity, activity_index) => {
-                    if (activity.date_string === prevVisitDate.dateString) {
-                      const localData = JSON.parse(localStorage.getItem('user'))
-                      const newState = localData;
-                        
-                      newState.activities[activity_index].data = newState.activities[activity_index].data.filter((data, data_index) => data.activity_id !== activity_id)
-                      newState.activities = newState.activities.filter((activity) => activity.data.length > 0)
-                      localStorage.setItem('user', JSON.stringify(newState));                      
-                    }
-
-                    return activity;
-                  })
-                }                
-
-                _loadActivities();
-
-                onClose();
+                else {                     
+                
+                  _deleteActivityFromLocal(localData, prevVisitDate, activity_id)
+                  _loadActivities();
+                  onClose();
+                }
               }}
             >
               Yes, Delete it!

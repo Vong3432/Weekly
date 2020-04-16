@@ -9,6 +9,7 @@ import axios from 'axios'
 // Import Context
 import { DayContext } from '../contexts/DayContext'
 import { ActivityContext } from '../contexts/ActivityContext'
+import { _addActivityToLocal } from '../functions/activity/local/activityFunctions';
 
 Modal.setAppElement('#root');
 
@@ -118,52 +119,15 @@ const CreateActivityPage = ({ history }) => {
             }
 
             else {
-                if (JSON.parse(localStorage.getItem('user')) === null) {
+                _addActivityToLocal(newActivity, dateString)
 
-                    const user = {
-                        activities: [
-                            {
-                                date_string: dateString,
-                                data: [newActivity]
-                            }
-                        ]
-                    }
-
-                    // Store into localStorage
-                    localStorage.setItem('user', JSON.stringify(user));
-                }
-
-                else {
-
-                    const user = JSON.parse(localStorage.getItem('user'));
-                    let hasFoundSameDate = false;
-
-                    user.activities.map((activity, index) => {
-                        if (activity.date_string === dateString) {
-                            activity.data.push(newActivity);
-                            hasFoundSameDate = true
-                        }
-                        return activity;
-                    })
-
-                    if (!hasFoundSameDate) {
-                        user.activities.push({
-                            date_string: dateString,
-                            data: [newActivity]
-                        })
-                    }
-
-                    localStorage.setItem('user', JSON.stringify(user));
-                }
+                setIsOpen(true);
+                setTimeout(() => {
+                    history.goBack();
+                }, 1000);
             }
 
-            setIsOpen(true);
-            setTimeout(() => {
-                history.goBack();
-            }, 1000);
-
         }
-
     }
 
 
