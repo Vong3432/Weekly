@@ -119,13 +119,13 @@ const CreateActivityPage = ({ history }) => {
             }
 
             else {
-                _addActivityToLocal(newActivity, dateString)
-
-                setIsOpen(true);
-                setTimeout(() => {
-                    history.goBack();
-                }, 1000);
+                _addActivityToLocal(newActivity, dateString)               
             }
+
+            setIsOpen(true);
+            setTimeout(() => {
+                history.goBack();
+            }, 1000);
 
         }
     }

@@ -60,9 +60,10 @@ const ActivityCard = ({ history, index, activity: { title, desc, time, activity_
                 else {                     
                 
                   _deleteActivityFromLocal(localData, prevVisitDate, activity_id)
-                  _loadActivities();
-                  onClose();
+                  _loadActivities();                  
                 }
+                
+                onClose();
               }}
             >
               Yes, Delete it!
