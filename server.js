@@ -69,7 +69,7 @@ if(process.env.NODE_ENV === 'production') {
 
 // Listen to port
 app.listen(port, () => {
-    wakeUpDyno(DYNO_URL);
+    // wakeUpDyno(DYNO_URL);
     console.log(`Server is running on ${port}`)
 })
 
