@@ -5,7 +5,8 @@ export const lightTheme = {
     text: '#2C2645',    
     arrow: '#62606c',
     innerShadow: 'inset 4px 4px 10px #CACBCE, inset -4px -4px 10px #EFEFF0',
-    shadow: '4px 4px 10px #CACBCE, -4px -4px 10px #EFEFF0'
+    shadow: '4px 4px 10px #CACBCE, -4px -4px 10px #EFEFF0',
+    todayBg: '#4a5468',
 }
 
 export const darkTheme = {
@@ -15,5 +16,6 @@ export const darkTheme = {
     text: '#fff',
     arrow: '#b0afaf',
     innerShadow: 'inset 4px 4px 10px #1F1F24, inset -4px -4px 10px #31333A',
-    shadow: '4px 4px 10px #1F1F24, -4px -4px 10px #31333A' 
+    shadow: '4px 4px 10px #1F1F24, -4px -4px 10px #31333A',
+    todayBg: '#2699fd',
 }

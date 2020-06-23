@@ -12,21 +12,22 @@ const Main = ({ history }, props) => {
 
     const { date: {currentMonth, currentYear}, dispatch } = useContext(DayContext);    
     const [daysInMonth, setDaysInMonth] = useState(0)
+    const [todayDate, setTodayDate] = useState(null);
     const { activities } = useContext(ActivityContext)
     
     let mainCoverElement = null,
         mainCoverTween = null;    
 
     useEffect(() => {        
-        
-        setDaysInMonth(moment(`${currentYear}-${currentMonth}`, "YYYY-MM").daysInMonth());                
+                             
+        setTodayDate(moment().format('YYYY-MM-DD').split(" ").join("-"));
+        setDaysInMonth(moment(`${currentYear}-${currentMonth}`, "YYYY-MM").daysInMonth());                        
 
     }, [currentMonth, currentYear, activities])        
     
-    useEffect(() => {        
-        
-        console.log()
-        const el = document.querySelector('.profile-container')
+    useEffect(() => {                                
+
+        const el = document.querySelector('.profile-container');
 
         if(el)
             el.style.display = 'none'
@@ -88,8 +89,15 @@ const Main = ({ history }, props) => {
 
         for (var i = startAt; i <= daysInMonth; i++) {                        
 
-            if (i >= 1) {                                             
-                elements.push(<Day key={i} _onDayClicked={_onDayClicked} day={i} month={currentMonth} year={currentYear} />)
+            if (i >= 1) {                                  
+                
+                let currentDateClass = "";
+                let currentDate = moment(`${currentYear}-${currentMonth}-${i}`).format("YYYY MM DD").split(" ").join("-");
+                
+                if( currentDate === todayDate) {
+                    currentDateClass = "today"
+                }                
+                elements.push(<Day key={i} activeName={currentDateClass} _onDayClicked={_onDayClicked} day={i} month={currentMonth} year={currentYear} />)
             }
             else {
                 elements.push(<Day key={i} day={""} />)

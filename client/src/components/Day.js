@@ -5,13 +5,13 @@ import { useState } from 'react';
 import {ActivityContext} from '../contexts/ActivityContext'
 import { UserContext } from '../contexts/UserContext';
 
-const Day = ({ _onDayClicked, day, month, year }) => {
+const Day = ({ _onDayClicked, day, month, year, activeName="" }) => {
 
     const { activities } = useContext(ActivityContext);
     const { authorized_user } = useContext(UserContext);
     const [ hasActivity, setHasActivity ] = useState(false)
 
-    useEffect(() => {          
+    useEffect(() => {                       
 
         // Compare dateString with every data in localStorage
         if (JSON.parse(localStorage.getItem('user')) !== null) {
@@ -67,7 +67,7 @@ const Day = ({ _onDayClicked, day, month, year }) => {
     }, [month, year])    
 
     return (
-        <div onClick={(e) => day && _onDayClicked(e, day)} className={`soft-shadow main-right__day ${hasActivity && 'hasActivity'}`}>
+        <div onClick={(e) => day && _onDayClicked(e, day)} className={`soft-shadow main-right__day ${activeName} ${hasActivity && 'hasActivity'}`}>
             <h1 className="bold-font font--big calendar-date">{day}</h1>            
         </div>
     )

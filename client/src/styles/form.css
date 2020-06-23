@@ -69,7 +69,7 @@ input[type=time]::-webkit-inner-spin-button {
 }
 
 form button {
-    padding: 1.25em !important;
+    /* padding: 1.25em !important; */
     width: 100% !important;
 }
 
