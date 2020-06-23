@@ -43,13 +43,23 @@ export const GlobalStyles = createGlobalStyle`
         background-color: ${({ theme }) => theme.background} !important;
     }
 
-    .google-button:hover, .google-button:hover > div, .profile-collapse-item:hover {
+    .google-button:hover, .google-button:hover > div, 
+    .profile-collapse-item:hover {
         box-shadow: ${({ theme }) => theme.innerShadow} !important;
     }
 
     .day {
         color: ${({ theme }) => theme.text};
         opacity: .5;
+    }
+
+    .today {
+        background-color: ${({ theme }) => theme.todayBg} !important;
+        opacity: 1 !important;        
+    }
+
+    .today .calendar-date {
+        color: #fff;
     }
 
     .arrow-svg {
@@ -104,8 +114,13 @@ export const GlobalStyles = createGlobalStyle`
         background: ${({ theme }) => theme.background};
     }     
 
-    .main-right__day:hover, .neomorphism-logo:hover {        
+    .main-right__day:hover, 
+    .neomorphism-logo:hover {        
         animation: shadowOnHoverAnimation 100ms ease-out forwards;
+    }
+
+    .today:hover {
+        animation: unset;
     }
 
     @keyframes shadowOnHoverAnimation {
