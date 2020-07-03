@@ -40,11 +40,13 @@ router.post('/create', auth, (req, res) => {
             to: email,
             subject: `Weekly: Notification for ${title}`,
             text: 'WEEKLY',
-            html: `
-                        <h1>${title}</h1>
-                        <small>${dateString}, ${time}</small>
-                        <p>You are receiving this notification because you have set a reminder for this activity</p>
-                        `
+            html: `                                        
+                    <div style="background: #514efd; padding: 2em; color: #fff">
+                        <small style="opacity:.5">${dateString}, ${time}</small>
+                        <h1 style="padding: 0; margin: 0; margin-top: .35em">Reminder for ${title}</h1>
+                        <p style="margin: 0; opacity: .5">You are receiving this notification because you have set a reminder for this activity</p>
+                    </div>   
+                `
         }
 
         const j = schedule.scheduleJob(activity_id, reminder_date, () => {        
