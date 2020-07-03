@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import moment from 'moment'
 import { _editActivityFromLocal } from '../functions/activity/local/activityFunctions'
+import { _editActivityFromCloud } from '../functions/activity/cloud/activityFunctions'
 
 const EditActivityPage = (props) => {    
        
@@ -112,15 +113,7 @@ const EditActivityPage = (props) => {
                 }                
                 
                 // Edit in mongo
-                async function updateActivity() {
-                    
-                    const response = await axios.put(`/activity/editActivity/${new_activity.activity_id}`, new_activity ,{headers: {"authorization": authorized_user.token}})
-                    const data = response.data;                                     
-                    
-                    dispatch({type: "EDIT_ACTIVITY", data})
-                }
-
-                updateActivity();                
+                _editActivityFromCloud(new_activity, authorized_user.token, dispatch)
             }
 
             else {

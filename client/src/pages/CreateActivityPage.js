@@ -10,6 +10,7 @@ import axios from 'axios'
 import { DayContext } from '../contexts/DayContext'
 import { ActivityContext } from '../contexts/ActivityContext'
 import { _addActivityToLocal } from '../functions/activity/local/activityFunctions';
+import { _addActivityToCloud } from '../functions/activity/cloud/activityFunctions';
 
 Modal.setAppElement('#root');
 
@@ -107,15 +108,7 @@ const CreateActivityPage = ({ history }) => {
                     ...newActivity
                 }
 
-                async function createNewActivity() {
-                    
-                    const response = await axios.post('/activity/create', new_activity);
-                    const data = response.data;
-
-                    dispatch({ type: "ADD_ACTIVITY", data });
-                }
-
-                createNewActivity()
+                _addActivityToCloud(new_activity, dispatch)
             }
 
             else {

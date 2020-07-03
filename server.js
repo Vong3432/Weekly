@@ -6,7 +6,6 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const mongoose = require('mongoose')
 const app = express();
-const wakeUpDyno = require('./WakeUpDyno')
 
 app.use(cors())
 app.use(express.json());
@@ -17,7 +16,6 @@ if(process.env.NODE_ENV !== 'production') {
 
 // Configuring Port
 const port = process.env.PORT || 5000;
-const DYNO_URL = "https://weeklyappcalendar.herokuapp.com/"
 
 // Task queue manager
 // const _RunTaskManager = require('./TaskQueue');
@@ -69,7 +67,6 @@ if(process.env.NODE_ENV === 'production') {
 
 // Listen to port
 app.listen(port, () => {
-    // wakeUpDyno(DYNO_URL);
     console.log(`Server is running on ${port}`)
 })
 

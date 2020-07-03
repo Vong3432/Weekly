@@ -7,6 +7,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext';
 import { ActivityContext } from '../contexts/ActivityContext';
 import axios from 'axios'
+import { _loadActivitiesFromCloud, _addLocalActivityToCloud } from '../functions/activity/cloud/activityFunctions';
 
 const Navbar = ({ theme, toggleTheme }) => {    
 
@@ -60,16 +61,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                             currentDay
                         }
 
-                        axios.post('/activity/local_to_cloud', current_activity)
-                            .then(res => {
-                                const cloud_data = res.data                                  
-                                dispatch({type: "ADD_ACTIVITY", cloud_data})                
-                            })
-                            .then(() => {
-                                // Clear localData so Google user can save on mongo directly
-                                localStorage.setItem('user', null)
-                            })
-                            .catch(err => console.log(err));
+                        _addLocalActivityToCloud(current_activity, dispatch);
                             
                         return data;
                     })
@@ -112,17 +104,9 @@ const Navbar = ({ theme, toggleTheme }) => {
         if(authorized_user) {            
             
             const email = authorized_user.email; 
-            const token = authorized_user.token;             
-
-            const loadCloudData = async() => {                                
-                const response = await axios.get(`/activity/displayAll/${email}`, {headers: {"authorization": token}})
-                const data = response.data                
-                
-                dispatch({type: "FETCH_FROM_CLOUD", data})
-            }          
+            const token = authorized_user.token; 
             
-            loadCloudData()
-                        
+            _loadActivitiesFromCloud(email, token, dispatch);                                    
         }
         
     }, [authorized_user])

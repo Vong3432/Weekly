@@ -4,6 +4,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import axios from 'axios';
 import { _deleteActivityFromLocal } from '../functions/activity/local/activityFunctions';
+import { _deleteActivityFromCloud, _loadActivitiesFromCloud } from '../functions/activity/cloud/activityFunctions';
 
 const ActivityCard = ({ history, index, activity: { title, desc, time, activity_id }, _loadActivities }) => {
 
@@ -33,28 +34,9 @@ const ActivityCard = ({ history, index, activity: { title, desc, time, activity_
                 const prevVisitDate = JSON.parse(localStorage.getItem('current_dateInformation'))
                 const authorized_user = JSON.parse(localStorage.getItem('authorized_user'))
 
-                if(authorized_user) {                  
-
-                  const deleteActivity = async() => {
-                    const response = await axios.delete(`/activity/delete/${activity_id}`, {headers: {"authorization": authorized_user.token}})
-                    const id = response.data;
-                    
-                    // Delete on MongoDB
-                    dispatch({ type: "DELETE_ACTIVITY", id})
-                  }  
-                  
-                  const email = authorized_user.email; 
-                  const token = authorized_user.token;
-                  
-                  const loadCloudData = async() => {                                
-                    const response = await axios.get(`/activity/displayAll/${email}`, {headers: {"authorization": token}})
-                    const data = response.data
-                    
-                    dispatch({type: "FETCH_FROM_CLOUD", data})
-                }         
-
-                  deleteActivity().then(() => loadCloudData());
-
+                if(authorized_user) {                                           
+                  _deleteActivityFromCloud(activity_id, authorized_user, dispatch)
+                    .then(() => _loadActivitiesFromCloud(authorized_user.email, authorized_user.token, dispatch));
                 }
 
                 else {                     

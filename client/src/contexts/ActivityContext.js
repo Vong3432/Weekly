@@ -10,14 +10,12 @@ export const ActivityContextProvider = props => {
         const local_data = localStorage.getItem('user');        
         const cloud_data = localStorage.getItem('cloud_data');            
         
-        if(local_data && local_data.length > 0) {   
-             console.log('hit')         
+        if(local_data && local_data.length > 0) {                
             const localData = localStorage.getItem('user');
             return localData ? JSON.parse(localData) : [];   
         }     
 
-        else if(cloud_data && cloud_data.length > 0) {        
-            console.log('hit')             
+        else if(cloud_data && cloud_data.length > 0) {               
             return cloud_data ? JSON.parse(cloud_data) : [];
         }
 
