@@ -39,8 +39,8 @@ router.post('/login', (req, res) => {
                 text: 'Thanks for using Weekly',
                 html: `
                     <div style="background: #514efd; padding: 2em; color: #fff">
-                        <h1 style="padding: 0; margin: 0;">Welcome to Weekly.</h1>
-                        <p style="margin: 0; opacity: .75; padding-top: .5em">Thanks for using Weekly! We will do our best to provide you the most effiency calendar functions as possible! :)</p>
+                        <h1 style="padding: 0; margin: 0; color: #fff">Welcome to Weekly.</h1>
+                        <p style="margin: 0; opacity: .75; padding-top: .5em; color: #fff">Thanks for using Weekly! We will do our best to provide you the most effiency calendar functions as possible! :)</p>
                     </div>   
                 `
             }
