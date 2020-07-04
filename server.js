@@ -55,7 +55,7 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 app.use('/user', require('./routes/user/user'));
 app.use('/activity', require('./routes/user/activity'))
 
-
+// Disabled sourcemap
 if(process.env.NODE_ENV === 'production') {
 
     // Test    
