@@ -55,15 +55,11 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 app.use('/user', require('./routes/user/user'));
 app.use('/activity', require('./routes/user/activity'))
 
-// Disabled sourcemap
-if(process.env.NODE_ENV === 'production') {
+app.use(express.static('client/build'));
 
-    // Test    
-    app.use(express.static('client/build'));    
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-    })
-}
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
 
 // Listen to port
 app.listen(port, () => {
