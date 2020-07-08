@@ -14,7 +14,7 @@ const RoutesWrapper = (props) => {
 
       setTimeout(() => setMounted(true), 0) 
       
-      window.scrollTo({top: 0})
+      // window.scrollTo({top: 0})
 
       // var scrollToTop = window.setInterval(() => {
       //     var pos = window.pageYOffset;

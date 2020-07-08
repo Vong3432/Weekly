@@ -8,7 +8,7 @@ import { GlobalStyles } from './global/GlobalStyles'
 import Navbar from './components/Navbar'
 
 // router
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ActivityContextProvider from './contexts/ActivityContext';
 import DayContextProvider from './contexts/DayContext';
 import UserContextProvider from './contexts/UserContext';

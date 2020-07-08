@@ -7,6 +7,7 @@ const cors = require('cors');
 const mongoose = require('mongoose')
 const app = express();
 
+
 app.use(cors())
 app.use(express.json());
 
@@ -55,12 +56,13 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 app.use('/user', require('./routes/user/user'));
 app.use('/activity', require('./routes/user/activity'))
 
-if(process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));    
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-    })
-}
+// Meta tags configuration
+app.use(require('./configure_meta'))
+  
+app.use(express.static('client/build'));    
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+})
 
 // Listen to port
 app.listen(port, () => {

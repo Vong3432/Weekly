@@ -73,11 +73,9 @@ const Day = ({ _onDayClicked, day, month, year }) => {
 
     return (
         <>
-            {isLoading === false && (
-                <div onClick={(e) => day && _onDayClicked(e, day)} className={`soft-shadow main-right__day ${todayClassName} ${activityClassName}`}>
+            <div onClick={(e) => day && _onDayClicked(e, day)} className={`soft-shadow main-right__day ${todayClassName} ${activityClassName}`}>
                     <h1 className="bold-font font--big calendar-date">{day}</h1>            
                 </div>
-            )}
         </>
     )
 }
