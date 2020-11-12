@@ -5,6 +5,7 @@ import Detail from './pages/Detail';
 import CreateActivityPage from './pages/CreateActivityPage';
 import EditActivityPage from './pages/EditActivityPage';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Activities from './pages/Activities';
 
 const RoutesWrapper = (props) => {  
   
@@ -43,6 +44,7 @@ const RoutesWrapper = (props) => {
             <Route exact path="/" component={Main} />
             <Route exact path="/detail" component={Detail} />
             <Route exact path="/create" component={CreateActivityPage} />
+            <Route exact path="/activities" component={Activities} />
             <Route exact path="/edit/:id" component={EditActivityPage} />
           </Switch>
         </CSSTransition>

@@ -17,10 +17,12 @@ const Main = ({ history }, props) => {
     let mainCoverElement = null,
         mainCoverTween = null;    
 
+    // Change calendar days
     useEffect(() => {                                             
         setDaysInMonth(moment(`${currentYear}-${currentMonth}`, "YYYY-MM").daysInMonth());                        
     }, [currentMonth, currentYear, activities])        
     
+    // Animation
     useEffect(() => {                                
 
         const el = document.querySelector('.profile-container');
@@ -36,6 +38,8 @@ const Main = ({ history }, props) => {
     }, [])
 
     const _update = (type, action) => {
+
+        // If user is changing year
         if (type === 'year') {
             switch (action) {
                 case 'INCREMENT':
@@ -47,6 +51,7 @@ const Main = ({ history }, props) => {
             }
         }
 
+        // If user is changing month
         else if (type === 'month') {
 
             switch (action) {
@@ -70,8 +75,7 @@ const Main = ({ history }, props) => {
                     break;
             }
         }        
-    }
-
+    }    
     const DaysWrapper = () => {
         return (_displayDays())
     }
@@ -83,7 +87,7 @@ const Main = ({ history }, props) => {
         let firstDay = moment(`${currentYear}-${currentMonth}`, "YYYY-MM").day(),
             startAt = 1 - firstDay;            
 
-        for (var i = startAt; i <= daysInMonth; i++) {                        
+        for (let i = startAt; i <= daysInMonth; i++) {                        
 
             if (i >= 1) {                                                                 
                 elements.push(<Day key={i} _onDayClicked={_onDayClicked} day={i} month={currentMonth} year={currentYear} />)
@@ -97,9 +101,10 @@ const Main = ({ history }, props) => {
     }
 
     const _onDayClicked = (e, currentDay) => {                        
-        
+            
         dispatch({type: "CHANGE_DAY", currentDay})
                     
+        // Update day of local storage
         localStorage.setItem('current_dateInformation', JSON.stringify({            
             currentDay,
             currentMonth,

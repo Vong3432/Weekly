@@ -19,16 +19,7 @@ const Detail = ({ history }) => {
 
     }, [currentMonth, currentYear]) 
     
-    useEffect(() => {  
-        
-        // const loadCloudData = async() => {                                
-        //     const response = await axios.get(`/activity/displayAll/${email}`, {headers: {"authorization": token}})
-        //     const data = response.data
-            
-        //     dispatch({type: "FETCH_FROM_CLOUD", data})
-        // }          
-        
-        // loadCloudData()          
+    useEffect(() => {        
 
         if(JSON.parse(localStorage.getItem('authorized_user'))) {
 
@@ -138,55 +129,6 @@ const Detail = ({ history }) => {
         }
         
     }
-
-    /*
-        ========================
-        Activity obj structure
-        ========================
-
-        activities: [
-            {
-                date: '9-3-2020',
-                data: [
-                    {
-                        name: 'activty1'
-                    },
-                    {
-                        name: 'activty2'
-                    },
-                ]
-            },
-            {
-                date: '10-3-2020',
-                data: [
-                    {
-                        name: 'activty3'
-                    },
-                    {
-                        name: 'activty4'
-                    },
-                ]
-            }
-        ]
-
-        Q: How to add activity ?
-        A: Create an user object (if not existed), 
-           and then user object contains an activities array,
-           and activity obj will be stored in the array
-
-        Q: What if the day has at least 1 activity?
-        A: Before adding a new activity, loops through the array and check with date
-           If date is same, push in the array of activity obj        
-        
-        
-        ========================
-        Found issues/bugs (👌 = solved)
-        ========================
-        [👌] 1. Incorrect date when switch to next year.
-        [👌] 2. Incorrect date when switch to previous year.
-    */
-
-    
 
     return (
         <section className="detail-section">

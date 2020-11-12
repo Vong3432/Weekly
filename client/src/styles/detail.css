@@ -161,6 +161,12 @@
     }
 }
 
+.activity-card__dateString {
+    padding-top: .5em;    
+    opacity: .5;    
+    font-weight: bold;
+}
+
 .react-confirm-alert-overlay {     
     background-color: var(--overlay) !important;    
 }

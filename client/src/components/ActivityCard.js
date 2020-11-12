@@ -6,7 +6,7 @@ import axios from 'axios';
 import { _deleteActivityFromLocal } from '../functions/activity/local/activityFunctions';
 import { _deleteActivityFromCloud, _loadActivitiesFromCloud } from '../functions/activity/cloud/activityFunctions';
 
-const ActivityCard = ({ history, index, activity: { title, desc, time, activity_id }, _loadActivities }) => {
+const ActivityCard = ({ history, index, activity: { title, desc, time, activity_id, dateString }, _loadActivities, showDate = false }) => {
 
   const [showDesc, setShowDesc] = useState(false);
   const { dispatch } = useContext(ActivityContext)
@@ -88,6 +88,7 @@ const ActivityCard = ({ history, index, activity: { title, desc, time, activity_
         <small className="activity-card__time">{time}</small>
         <p className="activity-card__desc">{desc}</p>
       </div>
+      {showDate && <div className="activity-card__dateString">{dateString}</div>}
     </div>
   )
 }

@@ -82,3 +82,7 @@ export const _deleteActivityFromLocal = (localData, prevVisitDate, activity_id) 
         return activity;
     })
 }             
+
+export const _loadActivitiesFromLocal = () => {
+    
+}
