@@ -8,8 +8,9 @@ import { UserContext } from '../contexts/UserContext';
 import { ActivityContext } from '../contexts/ActivityContext';
 import axios from 'axios'
 import { _loadActivitiesFromCloud, _addLocalActivityToCloud } from '../functions/activity/cloud/activityFunctions';
+import { withRouter } from "react-router-dom";
 
-const Navbar = ({ theme, toggleTheme }) => {    
+const Navbar = ({ theme, toggleTheme, history }) => {            
 
     const { dispatch } = useContext(ActivityContext)
     const { authorized_user, dispatchUser } = useContext(UserContext);    
@@ -123,7 +124,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             <strong className="big-font"><NavLink to="/">Weekly.</NavLink></strong>                
                 {isLogin === false ? (
                     <div className="unauthorized-navbar">
-                        <img onClick={() => toggleTheme()} className="logo" src={theme === 'light' ? moon : sun} alt="mode"/>                                                                          
+                        <img onClick={() => toggleTheme()} className="logo" src={theme === 'light' ? moon : sun} alt="mode"/>                                                                                                  
                         <GoogleLogin 
                             className="google-button"
                             clientId={process.env.REACT_APP_GOOGLE_SIGNIN_CLIENT}
@@ -142,11 +143,19 @@ const Navbar = ({ theme, toggleTheme }) => {
                             <svg onClick={() => setCollapse(!collapse)} className="neomorphism-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path className="add-svg" d="M12,15a1,1,0,0,1-.71-.29l-4-4A1,1,0,0,1,8.71,9.29L12,12.59l3.29-3.29a1,1,0,0,1,1.41,1.41l-4,4A1,1,0,0,1,12,15Z"/></svg>
                         </div>                                                
                         <div className={`profile-collapse-content ${collapse ? "collapse" : "show-collapse"}`}>                            
-                            <p className="profile-name profile-collapse-item">{authorized_user.name}</p>                                                      
+                            <p className="profile-name profile-collapse-item">{authorized_user.name}</p>                              
+
                             <div className="profile-collapse-item" onClick={() => toggleTheme()}>
                                 <img className="logo" src={theme === 'light' ? moon : sun} alt="mode"/>                                                                          
                                 <span className="profile-collapse-item-text">Mode</span>
                             </div> 
+
+                            <div className="profile-collapse-item" onClick={() => {setCollapse(true); history.push('/activities');}}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="logo" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                                <span className="profile-collapse-item-text">Activities</span>
+                            </div>
 
                             <GoogleLogout 
                                 className="profile-collapse-item google-logout-button" 
@@ -162,4 +171,4 @@ const Navbar = ({ theme, toggleTheme }) => {
     )
 }
 
-export default Navbar
+export default withRouter(Navbar)

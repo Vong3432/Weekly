@@ -16,6 +16,8 @@ const Activities = ({ history }) => {
     const [ fetchedActivities, setFetchedActivities ] = useState([]);
 
     useEffect(() => {
+
+        console.log(activities)
         
         if(activities === null || activities === undefined)
             return;

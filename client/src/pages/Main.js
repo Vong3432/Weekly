@@ -25,7 +25,7 @@ const Main = ({ history }, props) => {
     // Animation
     useEffect(() => {                                
 
-        const el = document.querySelector('.profile-container');
+        const el = document.querySelector('.profile-container');              
 
         if(el)
             el.style.display = 'none'

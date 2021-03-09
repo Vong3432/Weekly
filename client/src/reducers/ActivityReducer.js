@@ -6,8 +6,9 @@ export const ActivityReducer = (state, action) => {
         }        
         break;    
 
-        case "FETCH_FROM_CLOUD": {                        
-            // console.log(action.data)
+        case "FETCH_FROM_CLOUD": {                                    
+            const data = action.data
+            localStorage.setItem('cloud_data', JSON.stringify(data))
             return action.data;
         }
         break;
