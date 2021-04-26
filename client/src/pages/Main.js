@@ -4,15 +4,15 @@ import moment from 'moment'
 import { DayContext } from '../contexts/DayContext'
 import Day from '../components/Day'
 import { ActivityContext } from '../contexts/ActivityContext'
-import {} from 'gsap'
 import { TweenLite } from 'gsap/gsap-core'
 import { TimelineLite } from 'gsap/gsap-core'
+import { useTrail, animated } from 'react-spring'
 
 const Main = ({ history }, props) => {    
-
+    
     const { date: {currentMonth, currentYear}, dispatch } = useContext(DayContext);    
     const [daysInMonth, setDaysInMonth] = useState(0)    
-    const { activities } = useContext(ActivityContext)
+    const { activities } = useContext(ActivityContext)    
     
     let mainCoverElement = null,
         mainCoverTween = null;    
@@ -75,13 +75,10 @@ const Main = ({ history }, props) => {
                     break;
             }
         }        
-    }    
-    const DaysWrapper = () => {
-        return (_displayDays())
-    }
+    }        
 
-    const _displayDays = () => {
-        let elements = []
+    const dayElements = () => {
+        let elements = []        
 
         // Get first day of the month
         let firstDay = moment(`${currentYear}-${currentMonth}`, "YYYY-MM").day(),
@@ -166,12 +163,35 @@ const Main = ({ history }, props) => {
                     <p className="day main-right__day">THU</p>
                     <p className="day main-right__day">FRI</p>
                     <p className="day main-right__day">SAT</p>                    
-                    {daysInMonth > 0 && <DaysWrapper />}
+                    {daysInMonth > 0 && <DayTrail>
+                        {dayElements()}    
+                    </DayTrail>}
                 </div>
 
             </div>
         </section>
     )
+}
+
+const DayTrail = ({ children }) => {
+    const items = React.Children.toArray(children)
+    const trail = useTrail(items.length, {        
+        // opacity: open ? 1 : 0,
+        // x: open ? 0 : 20,
+        // height: open ? 110 : 0,
+        config: { duration: 100 },
+        from: { opacity: 0 },
+        to: { opacity: 1 }
+      })
+      return (
+        <>
+          {trail.map(({ ...style }, index) => (
+            <animated.div key={index} style={style}>
+              {items[index]}
+            </animated.div>
+          ))}
+        </>
+      )
 }
 
 export default Main
