@@ -1,4 +1,6 @@
 # Table of contents
 
-* [Getting Started](README.md)
+## Overview
 
+* [Getting Started](README.md)
+* [Change logs](overview/change-logs.md)
