@@ -16,7 +16,7 @@ if(process.env.NODE_ENV !== 'production') {
 }
 
 // Configuring Port
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5002;
 
 // Task queue manager
 // const _RunTaskManager = require('./TaskQueue');

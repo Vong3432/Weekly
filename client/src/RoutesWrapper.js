@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react'
-import { withRouter, Route, Switch } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Main from './pages/Main';
 import Detail from './pages/Detail';
 import CreateActivityPage from './pages/CreateActivityPage';
@@ -10,6 +10,7 @@ import Activities from './pages/Activities';
 const RoutesWrapper = (props) => {  
   
     const [mounted, setMounted] = useState(false)
+    const location = useLocation()
 
     useEffect(() => {
 
@@ -33,23 +34,23 @@ const RoutesWrapper = (props) => {
               
       // }, 5)
 
-    }, [props.location.pathname])    
+    }, [location.pathname])    
 
     // Animate Main.js 
     
     return (      
       <TransitionGroup>
-        <CSSTransition appear={true} in={mounted} key={props.location.pathname} timeout={300} unmountOnExit mountOnEnter classNames="page-transition">
-          <Switch location={props.location}>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/detail" component={Detail} />
-            <Route exact path="/create" component={CreateActivityPage} />
-            <Route exact path="/activities" component={Activities} />
-            <Route exact path="/edit/:id" component={EditActivityPage} />
-          </Switch>
+        <CSSTransition appear={true} in={mounted} key={location.pathname} timeout={300} unmountOnExit mountOnEnter classNames="page-transition">
+          <Routes location={location}>
+            <Route path="/" element={<Main />} />
+            <Route path="/detail" element={<Detail />} />
+            <Route path="/create" element={<CreateActivityPage />} />
+            <Route path="/activities" element={<Activities />} />
+            <Route path="/edit/:id" element={<EditActivityPage />} />
+          </Routes>
         </CSSTransition>
       </TransitionGroup>
     )
   }
   
-export default withRouter(RoutesWrapper)
+export default RoutesWrapper

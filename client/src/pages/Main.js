@@ -7,9 +7,11 @@ import { ActivityContext } from '../contexts/ActivityContext'
 import { TweenLite } from 'gsap/gsap-core'
 import { TimelineLite } from 'gsap/gsap-core'
 import { useTrail, animated } from 'react-spring'
+import { useNavigate } from 'react-router-dom'
 
-const Main = ({ history }, props) => {    
+const Main = (props) => {    
     
+    const navigate = useNavigate()
     const { date: {currentMonth, currentYear}, dispatch } = useContext(DayContext);    
     const [daysInMonth, setDaysInMonth] = useState(0)    
     const { activities } = useContext(ActivityContext)    
@@ -108,7 +110,7 @@ const Main = ({ history }, props) => {
             currentYear
         }));
 
-        history.push('/detail'); 
+        navigate('/detail'); 
     }
 
     return (

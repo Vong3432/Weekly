@@ -8,10 +8,11 @@ import { UserContext } from '../contexts/UserContext';
 import { ActivityContext } from '../contexts/ActivityContext';
 import axios from 'axios'
 import { _loadActivitiesFromCloud, _addLocalActivityToCloud } from '../functions/activity/cloud/activityFunctions';
-import { withRouter } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-const Navbar = ({ theme, toggleTheme, history }) => {            
+const Navbar = ({ theme, toggleTheme }) => {            
 
+    const navigate = useNavigate()
     const { dispatch } = useContext(ActivityContext)
     const { authorized_user, dispatchUser } = useContext(UserContext);    
 
@@ -150,7 +151,7 @@ const Navbar = ({ theme, toggleTheme, history }) => {
                                 <span className="profile-collapse-item-text">Mode</span>
                             </div> 
 
-                            <div className="profile-collapse-item" onClick={() => {setCollapse(true); history.push('/activities');}}>
+                            <div className="profile-collapse-item" onClick={() => {setCollapse(true); navigate('/activities');}}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="logo" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                                 </svg>
@@ -171,4 +172,4 @@ const Navbar = ({ theme, toggleTheme, history }) => {
     )
 }
 
-export default withRouter(Navbar)
+export default Navbar

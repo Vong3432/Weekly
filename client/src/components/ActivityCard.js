@@ -5,18 +5,20 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import axios from 'axios';
 import { _deleteActivityFromLocal } from '../functions/activity/local/activityFunctions';
 import { _deleteActivityFromCloud, _loadActivitiesFromCloud } from '../functions/activity/cloud/activityFunctions';
+import { useNavigate } from 'react-router-dom';
 
-const ActivityCard = ({ history, index, activity: { title, desc, time, activity_id, dateString }, _loadActivities, showDate = false }) => {
+const ActivityCard = ({ index, activity: { title, desc, time, activity_id, dateString }, _loadActivities, showDate = false }) => {
 
   const [showDesc, setShowDesc] = useState(false);
   const { dispatch } = useContext(ActivityContext)
+  const navigate = useNavigate()
 
   const _onShowDesc = () => {
     setShowDesc(!showDesc);
   }
 
   const _onEdit = (e) => {
-    history.push(`/edit/${activity_id}`);
+    navigate(`/edit/${activity_id}`);
   }
 
   const _onDelete = e => {

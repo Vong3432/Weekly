@@ -7,7 +7,7 @@ import { useState } from 'react';
 import ActivityCard from '../components/ActivityCard';
 import PageLoadingHandler from '../components/PageLoadingHandler';
 
-const Activities = ({ history }) => {
+const Activities = () => {
 
     // Activities from local
     const { activities } = useContext(ActivityContext);
@@ -36,7 +36,7 @@ const Activities = ({ history }) => {
     return (
         <section className="activities-section">        
             <div className="container">
-                {fetchedActivities.map((activity, index) => <ActivityCard showDate={true} history={history} key={index} index={index} activity={activity} />)}
+                {fetchedActivities.map((activity, index) => <ActivityCard showDate={true} key={index} index={index} activity={activity} />)}
             </div>            
         </section>
     )

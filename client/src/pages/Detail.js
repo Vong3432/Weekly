@@ -5,9 +5,11 @@ import moment from 'moment'
 import ActivityCard from '../components/ActivityCard'
 import { _scrollToTop } from '../functions/ScrollToTop'
 import { ActivityContext } from '../contexts/ActivityContext'
+import { useNavigate } from 'react-router-dom'
 
-const Detail = ({ history }) => {
+const Detail = () => {
 
+    const navigate = useNavigate()
     const { date: { currentYear, currentMonth, currentDay, dateString }, dispatch } = useContext(DayContext)
     const [daysInMonth, setDaysInMonth] = useState(0)
     const { activities } = useContext(ActivityContext)
@@ -149,7 +151,7 @@ const Detail = ({ history }) => {
                             </div>
                         </span>
                     </div>
-                    <div className="neomorphism-logo round" onClick={e => history.push('/create')}>
+                    <div className="neomorphism-logo round" onClick={e => navigate('/create')}>
                         <svg className="logo" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path className="add-svg" d="M25.05 0H24.95C22.2162 0 20 2.21619 20 4.95V45.05C20 47.7838 22.2162 50 24.95 50H25.05C27.7838 50 30 47.7838 30 45.05V4.95C30 2.21619 27.7838 0 25.05 0Z" />
                             <path className="add-svg" d="M45.05 20H4.95C2.21619 20 0 22.2162 0 24.95V25.05C0 27.7838 2.21619 30 4.95 30H45.05C47.7838 30 50 27.7838 50 25.05V24.95C50 22.2162 47.7838 20 45.05 20Z" />
@@ -159,7 +161,7 @@ const Detail = ({ history }) => {
                 </div>
                 <div className="detail-activities">
                     <p className="opacity-50">Activities</p>
-                    {loadedActivities.length > 0 && loadedActivities.map((activity, index) => <ActivityCard history={history} key={index} index={index} activity={activity} _loadActivities={_loadActivities} />)}
+                    {loadedActivities.length > 0 && loadedActivities.map((activity, index) => <ActivityCard key={index} index={index} activity={activity} _loadActivities={_loadActivities} />)}
 
                 </div>
 
