@@ -14,4 +14,4 @@ The format is based on [Keep a Changelog](http://keepachangelog.com), [Sample Ch
 
 #### Added
 
-* Update website dependecies.
+* Update website dependencies.
